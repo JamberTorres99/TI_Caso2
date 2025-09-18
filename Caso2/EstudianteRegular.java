@@ -8,10 +8,10 @@ public class EstudianteRegular extends Estudiante {
 
     @Override
     public double calcularMensualidad() {
-        double total = 0;
+        double suma = 0;
         for (Curso c : getCursos()) {
-            total += c.getCreditos() * COSTO_POR_CREDITO;
+            suma += c.getCreditos() * COSTO_POR_CREDITO;
         }
-        return total;
+        return suma;
     }
 }
