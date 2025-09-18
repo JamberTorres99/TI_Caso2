@@ -23,62 +23,70 @@ public class GestionEstudianteApp {
         est2.agregarCurso(new Curso("Arquitectura de Computadoras", 5, "Sáb 8:00 - 12:00", "Presencial", "Ing. Morales"));
         estudiantes.add(est2);
 
-        // --- Agregar estudiantes por teclado ---
-        System.out.print("¿Cuántos estudiantes desea agregar? ");
-        int cantidad = sc.nextInt();
+        // --- Menú principal ---
+        System.out.println("¿Desea agregar más estudiantes?");
+        System.out.println("1. No, mostrar solo los fijos");
+        System.out.println("2. Sí, quiero registrar más estudiantes");
+        System.out.print("Opción: ");
+        int opcion = sc.nextInt();
         sc.nextLine();
 
-        for (int i = 0; i < cantidad; i++) {
-            System.out.println("\nRegistro del estudiante " + (i + 1));
-
-            System.out.print("Nombre: ");
-            String nombre = sc.nextLine();
-
-            System.out.print("Edad: ");
-            int edad = sc.nextInt();
+        if (opcion == 2) {
+            System.out.print("¿Cuántos estudiantes desea agregar? ");
+            int cantidad = sc.nextInt();
             sc.nextLine();
 
-            System.out.print("¿Es becado? (s/n): ");
-            String tipo = sc.nextLine();
+            for (int i = 0; i < cantidad; i++) {
+                System.out.println("\nRegistro del estudiante " + (i + 1));
 
-            Estudiante nuevoEstudiante;
-            if (tipo.equalsIgnoreCase("s")) {
-                System.out.print("Ingrese porcentaje de beca (0-100): ");
-                double porc = sc.nextDouble();
-                sc.nextLine();
-                nuevoEstudiante = new EstudianteBecado(nombre, edad, porc / 100.0);
-            } else {
-                nuevoEstudiante = new EstudianteRegular(nombre, edad);
-            }
+                System.out.print("Nombre: ");
+                String nombre = sc.nextLine();
 
-            // Agregar cursos al estudiante
-            System.out.print("¿Cuántos cursos registrará este estudiante? ");
-            int cantCursos = sc.nextInt();
-            sc.nextLine();
-
-            for (int j = 0; j < cantCursos; j++) {
-                System.out.println("\nCurso " + (j + 1));
-
-                System.out.print("Nombre del curso: ");
-                String nombreCurso = sc.nextLine();
-
-                System.out.print("Créditos: ");
-                int creditos = sc.nextInt();
+                System.out.print("Edad: ");
+                int edad = sc.nextInt();
                 sc.nextLine();
 
-                System.out.print("Horario: ");
-                String horario = sc.nextLine();
+                System.out.print("¿Es becado? (s/n): ");
+                String tipo = sc.nextLine();
 
-                System.out.print("Modalidad (Presencial/Remoto): ");
-                String modalidad = sc.nextLine();
+                Estudiante nuevoEstudiante;
+                if (tipo.equalsIgnoreCase("s")) {
+                    System.out.print("Ingrese porcentaje de beca (0-100): ");
+                    double porc = sc.nextDouble();
+                    sc.nextLine();
+                    nuevoEstudiante = new EstudianteBecado(nombre, edad, porc / 100.0);
+                } else {
+                    nuevoEstudiante = new EstudianteRegular(nombre, edad);
+                }
 
-                System.out.print("Docente: ");
-                String docente = sc.nextLine();
+                System.out.print("¿Cuántos cursos registrará este estudiante? ");
+                int cantCursos = sc.nextInt();
+                sc.nextLine();
 
-                nuevoEstudiante.agregarCurso(new Curso(nombreCurso, creditos, horario, modalidad, docente));
+                for (int j = 0; j < cantCursos; j++) {
+                    System.out.println("\nCurso " + (j + 1));
+
+                    System.out.print("Nombre del curso: ");
+                    String nombreCurso = sc.nextLine();
+
+                    System.out.print("Créditos: ");
+                    int creditos = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Horario: ");
+                    String horario = sc.nextLine();
+
+                    System.out.print("Modalidad (Presencial/Remoto): ");
+                    String modalidad = sc.nextLine();
+
+                    System.out.print("Docente: ");
+                    String docente = sc.nextLine();
+
+                    nuevoEstudiante.agregarCurso(new Curso(nombreCurso, creditos, horario, modalidad, docente));
+                }
+
+                estudiantes.add(nuevoEstudiante);
             }
-
-            estudiantes.add(nuevoEstudiante);
         }
 
         // --- Mostrar todos los estudiantes ---
